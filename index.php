@@ -906,10 +906,10 @@
     <nav class="navbar" id="main-navbar">
         <div class="navbar-container">
             <!-- Moved navbar-brand to the beginning to align left -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="#">   
                 <img src="uploads/BRSMS.jpg" alt="BRSMS Logo">
                 <div class="brand-text">
-                    BRSMS <span class="version">v1.1</span>
+                    BRSMS <span class="version">v1.2</span>
                     <div class="env-label">TEST SERVER</div>
                 </div>
             </a>
