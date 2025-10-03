@@ -1,0 +1,557 @@
+:root {
+    --primary-color: #5f2c82;
+    --secondary-color: #6f2dbd;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #0dcaf0;
+
+    /* Custom Modal Colors based on incoming.php */
+    --modal-success-bg: #28a745;
+    --modal-success-text: white;
+    --modal-error-bg: #dc3545;
+    --modal-error-text: white;
+    --modal-warning-bg: #ffc107;
+    --modal-warning-text: #000;
+    --modal-info-bg: #0dcaf0;
+    --modal-info-text: #212529;
+    --modal-borrowed-bg: #fd7e14;
+    --modal-borrowed-text: white;
+    /* NEW: Grey for logout confirmation */
+    --modal-grey-bg: #6c757d;
+    --modal-grey-text: white;
+
+
+    /* Minimalist Table Colors (from returning.php) */
+    --table-border-color: #e0e0e0;
+    --table-header-bg: #f8f8f8;
+    --table-header-text: #333;
+    --table-row-hover-bg: #f5f5f5;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #F0F8FF;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+    flex-grow: 1; /* Allow wrapper to grow and fill available space */
+}
+.sidebar {
+    background-color: var(--primary-color); /* Use primary color for sidebar */
+    min-height: 100vh; /* Changed from 100vh to 100% to prevent stretching beyond content */
+    padding: 30px 20px;
+    color: white;
+    display: flex; /* Use flexbox for sidebar content */
+    flex-direction: column; /* Stack items vertically */
+}
+.sidebar .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+.sidebar .logo-circle {
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar .logo-circle img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+.sidebar .logo-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 18px;
+    display: block;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-bottom: 12px;
+    transition: background 0.2s ease;
+    font-weight: normal; /* Ensure sidebar text is not bold */
+}
+.sidebar a i {
+    margin-right: 12px;
+}
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 14px 18px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+}
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+#mainContentToggle {
+    display: none;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+}
+.page-header {
+    font-size: 2rem;
+    font-weight: normal;
+    color: #343a40;
+    margin-bottom: 20px;
+    display: block;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.page-header i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.dashboard-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 20px;
+    display: block;
+    text-align: left;
+    padding-left: 15px;
+}
+
+/* --- Stat Card Enhancements --- */
+.stat-card {
+    border-left: 5px solid;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* More pronounced shadow */
+    padding: 18px; /* Slightly reduced padding */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    background-color: white; /* Default background */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; /* For icon positioning */
+    overflow: hidden; /* Hide overflowing icon */
+    min-height: 170px; /* Slightly reduced minimum height */
+    cursor: pointer; /* Add pointer cursor to indicate clickability */
+}
+.stat-card:hover {
+    transform: translateY(-8px); /* More noticeable lift */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* Stronger shadow on hover */
+}
+
+/* Specific stat card styles with semi-transparent background */
+.stat-card.resources {
+    border-color: #3498db; /* Blue */
+    background-color: rgba(52, 152, 219, 0.05); /* Blue with 5% opacity */
+}
+.stat-card.pending {
+    border-color: #f39c12; /* Orange */
+    background-color: rgba(243, 156, 18, 0.05); /* Orange with 5% opacity */
+}
+.stat-card.issued {
+    border-color: #9b59b6; /* Purple */
+    background-color: rgba(155, 89, 182, 0.05); /* Purple with 5% opacity */
+}
+.stat-card.returned {
+    border-color: #16a085; /* Green */
+    background-color: rgba(22, 160, 133, 0.05); /* Green with 5% opacity */
+}
+
+.stat-card .card-title {
+    font-size: 0.95rem; /* Slightly smaller title */
+    color: #6c757d;
+    margin-bottom: 6px; /* Reduced margin */
+    font-weight: 500;
+}
+.stat-card .card-value {
+    font-size: 2rem; /* Slightly smaller value */
+    font-weight: 700; /* Bolder value */
+    color: #343a40;
+    line-height: 1; /* Tighter line height */
+    margin-bottom: 8px; /* Reduced margin */
+}
+.stat-card .card-details {
+    font-size: 0.8rem; /* Slightly smaller details */
+    color: #555;
+    line-height: 1.4; /* Adjusted line height */
+}
+.stat-card .card-details small {
+    display: block; /* Each detail on a new line */
+    margin-bottom: 1px; /* Reduced margin */
+}
+.stat-card .card-icon {
+    position: absolute;
+    top: 8px; /* Adjusted position */
+    right: 12px; /* Adjusted position */
+    font-size: 3.5rem; /* Increased icon size */
+    color: rgba(0, 0, 0, 0.07); /* Very subtle, background-like */
+    z-index: 0;
+}
+/* MODIFICATION: Make card icons more visible */
+.stat-card.resources .card-icon { color: rgba(52, 152, 219, 0.2); } /* Blue, more visible */
+.stat-card.pending .card-icon { color: rgba(243, 156, 18, 0.2); } /* Orange, more visible */
+.stat-card.issued .card-icon { color: rgba(155, 89, 182, 0.2); } /* Purple, more visible */
+.stat-card.returned .card-icon { color: rgba(22, 160, 133, 0.2); } /* Green, more visible */
+
+.stat-card .content {
+    position: relative; /* Ensure content is above icon */
+    z-index: 1;
+}
+
+/* Custom styles for resource item statuses */
+.status-available {
+    color: #28a745; /* Green */
+    font-weight: bold;
+}
+.status-borrowed {
+    color: #fd7e14; /* Orange */
+    font-weight: bold;
+}
+.status-maintenance {
+    color: #dc3545; /* Red */
+    font-weight: bold;
+}
+.status-lost { /* Style for lost items */
+    color: #6c757d; /* Grey */
+    font-weight: bold;
+}
+
+/* New styles for improved Total Resources card */
+.stat-card.resources .card-value {
+    font-size: 2.5rem; /* Larger for main count */
+    margin-bottom: 10px;
+}
+
+.stat-card.resources .breakdown {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.stat-card.resources .breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+    color: #555;
+}
+
+.stat-card.resources .breakdown-item i {
+    margin-right: 5px;
+    font-size: 0.9rem;
+}
+
+.stat-card.resources .breakdown-item strong {
+    font-size: 0.9rem;
+}
+
+.welcome-message {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 10px;
+    padding: 20px; /* Reduced padding */
+    margin-bottom: 20px; /* Reduced margin */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* Stronger shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.welcome-message .welcome-text {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+.welcome-message .welcome-text h2 {
+    font-size: 1.8rem; /* Slightly smaller for prominence */
+    font-weight: 700; /* Bolder */
+    margin-bottom: 6px; /* Space between heading and paragraph */
+}
+
+.welcome-message .welcome-text p {
+    font-size: 0.95rem; /* Slightly smaller for readability */
+    opacity: 0.95; /* Slightly less opaque for subtle contrast */
+}
+
+.welcome-message .user-info {
+    text-align: right;
+    font-size: 0.9rem; /* Standard font size */
+    margin-left: 20px; /* Space from welcome text */
+    white-space: nowrap; /* Prevent wrapping for role/barangay */
+}
+
+.welcome-message .user-info p {
+    margin-bottom: 5px; /* Space between info lines */
+    font-weight: 500;
+}
+
+/* Responsive adjustments for welcome message */
+@media (max-width: 768px) {
+    .welcome-message {
+        flex-direction: column;
+        text-align: center;
+    }
+    .welcome-message .welcome-text {
+        margin-bottom: 15px;
+    }
+    .welcome-message .user-info {
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Consistent shadow with stat cards */
+}
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+    color: white;
+    font-weight: bold;
+    padding: 12px 15px; /* Reduced padding */
+    font-size: 1rem; /* Slightly smaller font size */
+    display: flex;
+    align-items: center;
+}
+.card-header i {
+    margin-right: 6px; /* Reduced margin */
+}
+.card-header.borrowed {
+    background-color: #f39c12; /* Orange */
+}
+.card-header.returned {
+    background-color: #3498db; /* Blue */
+}
+
+/* Table Fixes */
+.table-responsive {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.table-minimalist {
+    width: 100%;
+    margin-bottom: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed; /* Ensures columns have fixed widths */
+}
+
+.table-minimalist thead th {
+    position: sticky;
+    top: 0;
+    background: #f8f8f8;
+    color: #333;
+    z-index: 10;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: middle;
+    text-align: left;
+    padding: 8px 10px; /* Slightly reduced padding */
+    font-weight: 600;
+    font-size: 0.8rem; /* Slightly smaller font */
+}
+
+.table-minimalist tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-minimalist th,
+.table-minimalist td {
+    padding: 10px 10px; /* Increased padding for more height */
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: middle;
+    word-wrap: break-word; /* Allows long words to break and wrap */
+    overflow: hidden; /* Hides content that overflows the cell */
+    text-overflow: ellipsis; /* Adds ellipsis for overflowing text */
+    color: #444;
+    font-size: 0.75rem; /* Slightly smaller font for data */
+    line-height: 1.4; /* Added line-height for more vertical space */
+}
+
+/* Specific column widths for better layout (adjusted after removing ID) */
+.table-minimalist th:nth-child(1),
+.table-minimalist td:nth-child(1) {
+    width: 30%; /* Resource Name */
+}
+.table-minimalist th:nth-child(2),
+.table-minimalist td:nth-child(2) {
+    width: 25%; /* Requester */
+}
+.table-minimalist th:nth-child(3),
+.table-minimalist td:nth-child(3) {
+    width: 20%; /* Barangay */
+}
+.table-minimalist th:nth-child(4),
+.table-minimalist td:nth-child(4) {
+    width: 10%; /* Quantity */
+    text-align: center; /* Center quantity */
+}
+.table-minimalist th:nth-child(5),
+.table-minimalist td:nth-child(5) {
+    width: 15%; /* Date Borrowed/Returned */
+}
+
+
+.table-minimalist tbody tr {
+    background-color: white;
+    transition: background-color 0.2s ease;
+}
+
+.table-minimalist tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .table-responsive {
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .table-minimalist, .table-minimalist tbody, .table-minimalist tr, .table-minimalist td, .table-minimalist th {
+        display: block;
+        width: 100%;
+    }
+    .table-minimalist thead {
+        display: none;
+    }
+    .table-minimalist tr {
+        margin-bottom: 8px; /* Reduced margin */
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .table-minimalist td {
+        border-bottom: 1px solid #e0e0e0;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        white-space: normal; /* Allow text to wrap */
+        word-wrap: break-word;
+        overflow: visible; /* Ensure content is visible */
+        text-overflow: clip; /* No ellipsis on small screens */
+    }
+    .table-minimalist td:last-child {
+        border-bottom: none;
+    }
+    .table-minimalist td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px; /* Reduced padding */
+        font-weight: 500;
+        text-align: left;
+        color: #666;
+    }
+}
+
+.text-secondary {
+    color: #6c757d !important;
+}
+.stat-card h4 {
+    font-size: 1.5rem; /* Adjusted font size */
+    margin-bottom: 4px; /* Adjusted margin */
+    color: #343a40;
+}
+.stat-card small {
+    font-size: 0.75rem; /* Adjusted font size */
+    color: #6c757d;
+}
+
+/* Adjustments for card sizes to make room for footers */
+@media (min-width: 992px) { /* For large devices (lg) and up */
+    .col-lg-6.mb-4.d-flex {
+        flex: 0 0 49%; /* Make them take up 49% of the width */
+        max-width: 49%; /* Max width 49% */
+        margin-right: 1%; /* Add some margin between them */
+    }
+    .col-lg-6.mb-4.d-flex:nth-child(even) { /* Target every second card in a row */
+        margin-right: 0; /* No margin for the second one */
+    }
+}
+@media (min-width: 1200px) { /* For extra large devices (xl) and up, if needed */
+    .col-lg-6.mb-4.d-flex {
+        flex: 0 0 49.5%; /* Slightly wider for very large screens */
+        max-width: 49.5%;
+        margin-right: 1%;
+    }
+    .col-lg-6.mb-4.d-flex:nth-child(even) {
+        margin-right: 0;
+    }
+}
+
+/* Footer styling (example, you can add your actual footer content here) */
+.footer {
+    padding: 15px; /* Reduced padding */
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.85rem; /* Slightly smaller font */
+    margin-top: auto; /* Push footer to the bottom */
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Toast Notification Styles (copied from login.php) */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for exact centering */
+    z-index: 1100;
+    width: 100%; /* Take full width to allow centering of content */
+    max-width: 400px; /* Limit toast width */
+    display: flex; /* Use flexbox for centering toast content */
+    justify-content: center; /* Center toast content */
+}
+
+/* Custom Toast Styles for larger size and consistent appearance */
+.toast {
+    font-size: 1.1rem; /* Slightly larger font size */
+    padding: 1rem 1.25rem; /* Increase padding */
+    border-radius: 0.5rem; /* Slightly more rounded corners */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* More prominent shadow */
+}
+
+.toast-body {
+    font-weight: 500; /* Make text a bit bolder */
+    display: flex; /* Enable flexbox for icon and text alignment */
+    align-items: center; /* Vertically align icon and text */
+    gap: 10px; /* Space between icon and text */
+}
+
+.toast-body i {
+    font-size: 1.5rem; /* Size of the icon */
+}

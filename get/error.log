@@ -1,0 +1,97 @@
+[03-Oct-2025 02:50:45 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:50:45 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:50:47 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:50:47 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:51:04 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:51:04 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:51:48 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:51:48 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:51:51 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:51:51 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:52:09 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:52:09 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:53:29 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:53:29 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:55:09 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 02:55:09 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:33:17 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:33:17 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:33:25 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:33:25 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:46:22 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:46:22 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:54:41 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:54:41 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:54:45 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:54:45 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:54:47 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:54:47 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:56:24 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:56:24 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:56:32 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:56:32 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:56:41 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 03:56:41 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 16
+[03-Oct-2025 04:03:49 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 21
+[03-Oct-2025 04:03:49 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 21
+[03-Oct-2025 04:05:23 UTC] PHP Warning:  require(phpmailer/Exception.php): Failed to open stream: No such file or directory in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 21
+[03-Oct-2025 04:05:23 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phpmailer/Exception.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/u713521444/domains/brsms-tagoloan.com/public_html/get/process_request_action.php on line 21
+[03-Oct-2025 04:46:44 UTC] Request Action Error (ID: 6, Action: approve): Request is not pending and cannot be approved.
+[03-Oct-2025 04:46:53 UTC] Request Action Error (ID: 6, Action: approve): Request is not pending and cannot be approved.

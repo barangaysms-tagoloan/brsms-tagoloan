@@ -1,0 +1,861 @@
+:root {
+    --primary-color: #5f2c82;
+    --secondary-color: #6f2dbd;
+    --success-color: #28a745;
+    --warning-color: #ffc107; /* This is the color from super_dashboard.php for edit buttons */
+    --danger-color: #dc3545; /* Updated to match incoming.php error color */
+    --info-color: #0dcaf0; /* Updated to match incoming.php info color */
+    --lost-color: #8B0000; /* Darker red for 'Lost' status */
+
+    /* Custom Modal Colors based on incoming.php */
+    --modal-success-bg: #28a745;
+    --modal-success-text: white;
+    --modal-error-bg: #dc3545;
+    --modal-error-text: white;
+    --modal-warning-bg: #ffc107;
+    --modal-warning-text: #000;
+    --modal-info-bg: #0dcaf0;
+    --modal-info-text: #212529;
+    --modal-borrowed-bg: #fd7e14;
+    --modal-borrowed-text: white;
+    /* NEW: Grey for logout confirmation */
+    --modal-grey-bg: #6c757d;
+    --modal-grey-text: white;
+
+    /* Minimalist Table Colors (from returning.php) */
+    --table-border-color: #e0e0e0;
+    --table-header-bg: #f8f8f8;
+    --table-header-text: #333;
+    --table-row-hover-bg: #f5f5f5;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #F0F8FF; /* Changed to AliceBlue for consistency with returning.php */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    flex-grow: 1; /* Allow wrapper to grow and fill available space */
+}
+
+.sidebar {
+    background-color: #5f2c82;
+    min-height: 100vh;
+    padding: 30px 20px;
+    color: white;
+    display: flex; /* Use flexbox for sidebar content */
+    flex-direction: column; /* Stack items vertically */
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+}
+.sidebar .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+.sidebar .logo-container .logo-circle {
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar .logo-container .logo-circle img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+.sidebar .logo-container .logo-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 18px;
+    display: block;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-bottom: 12px;
+    transition: background 0.2s ease;
+    font-weight: normal; /* Ensure sidebar text is not bold */
+}
+.sidebar a i {
+    margin-right: 12px;
+}
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 14px 18px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+}
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Remove the mainContentToggle and its related styles as dashboard.php does not have it */
+#mainContentToggle {
+    display: none; /* Hide the toggle button as it's not in dashboard.php's design */
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 4px;
+    display: flex; /* Added to allow flex-direction column */
+    flex-direction: column; /* Added to push footer to bottom */
+}
+
+/* Page Header Style (from returning.php) */
+.page-header {
+    font-size: 2rem; /* Slightly smaller font size */
+    font-weight: normal; /* Not bold */
+    color: #343a40;
+    margin-bottom: 20px;
+    display: block;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.page-header i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.table-wrapper {
+    max-height: 715px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border: 1px solid var(--table-border-color); /* Changed to match returning.php */
+    border-radius: 8px; /* Changed to match returning.php */
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Changed to match returning.php */
+}
+
+.table-wrapper thead th {
+    position: sticky;
+    top: 59px; /* Adjusted to be below the sticky search/filter bar */
+    background: var(--primary-color); /* Changed to sidebar color */
+    color: white; /* Changed to white for contrast */
+    z-index: 10;
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--table-border-color);
+}
+
+.table-wrapper tbody td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 8px 10px;
+    background-color: #fff;
+    border-bottom: 1px solid var(--table-border-color);
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.table-wrapper tbody tr:hover {
+    background-color: var(--table-row-hover-bg);
+}
+
+.photo-cell {
+    width: 120px;
+    min-width: 120px;
+    padding: 8px !important;
+}
+
+.res-img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.res-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.badge-available {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.badge-borrowed {
+    background-color: var(--warning-color);
+    color: #212529;
+}
+
+.badge-maintenance {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.badge-lost { /* New style for 'Lost' badge */
+    background-color: var(--lost-color);
+    color: white;
+}
+
+.badge-mixed {
+    background-color: #6c757d;
+    color: white;
+}
+
+.action-btns {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* Adjusted styles for search and filter within the table-wrapper */
+.search-filter-row {
+    background-color: var(--table-header-bg);
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--table-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 11;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.search-filter-row .search-input-group {
+    position: relative;
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+.search-filter-row .search-input-group input {
+    padding-left: 40px;
+    border-radius: 25px;
+    border: 1px solid var(--table-border-color);
+    width: 100%;
+    font-size: 0.95rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.search-filter-row .search-input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+.search-filter-row .category-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-filter-row .category-filter-group .form-select {
+    width: auto;
+    min-width: 200px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border: 1px solid var(--table-border-color);
+}
+
+.search-filter-row .form-label {
+    font-weight: 600;
+    color: var(--table-header-text);
+    font-size: 0.95rem;
+}
+
+
+.status-badge {
+    font-size: 0.85rem;
+    padding: 0.35em 0.65em;
+    display: block;
+    margin-bottom: 4px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.status-display-container .status-badge:last-child {
+    margin-bottom: 0;
+}
+
+.status-count {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.status-card {
+    transition: transform 0.2s;
+    cursor: pointer; /* Add cursor pointer to indicate clickability */
+}
+
+.status-card:hover {
+    transform: translateY(-5px);
+}
+
+.modal-body .table-responsive {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #e9ecef;
+    border-radius: 0.25rem;
+}
+
+.modal-body .table-responsive thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    z-index: 1;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.borrowed-quantity {
+    color: var(--warning-color);
+    font-weight: bold;
+}
+
+/* Custom Alert Modal Styles (from incoming.php) */
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1060; /* Higher than Bootstrap modals (1050) */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.custom-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.custom-modal {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.custom-modal-overlay.show .custom-modal {
+    transform: translateY(0);
+}
+
+.custom-modal .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.custom-modal .modal-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: white; /* Default icon color */
+}
+
+.custom-modal .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.custom-modal .modal-message {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.custom-modal .modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.custom-modal .modal-actions button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Modal Type Styles (from incoming.php) */
+.custom-modal.success .modal-icon {
+    background-color: var(--modal-success-bg);
+}
+.custom-modal.success .modal-title {
+    color: var(--modal-success-bg);
+}
+.custom-modal.success .btn-primary-action {
+    background-color: var(--modal-success-bg);
+    color: var(--modal-success-text);
+    border: 1px solid var(--modal-success-bg);
+}
+.custom-modal.success .btn-primary-action:hover {
+    background-color: #218838;
+    border-color: #218838;
+}
+
+.custom-modal.error .modal-icon {
+    background-color: var(--modal-error-bg);
+}
+.custom-modal.error .modal-title {
+    color: var(--modal-error-bg);
+}
+.custom-modal.error .btn-primary-action {
+    background-color: var(--modal-error-bg);
+    color: var(--modal-error-text);
+    border: 1px solid var(--modal-error-bg);
+}
+.custom-modal.error .btn-primary-action:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+.custom-modal.warning .modal-icon {
+    background-color: var(--modal-warning-bg);
+    color: var(--modal-warning-text);
+}
+.custom-modal.warning .modal-title {
+    color: var(--modal-warning-bg);
+}
+.custom-modal.warning .btn-primary-action {
+    background-color: var(--modal-warning-bg);
+    color: var(--modal-warning-text);
+    border: 1px solid var(--modal-warning-bg);
+}
+.custom-modal.warning .btn-primary-action:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+}
+
+.custom-modal.info .modal-icon {
+    background-color: var(--modal-info-bg);
+    color: var(--modal-info-text);
+}
+.custom-modal.info .modal-title {
+    color: var(--modal-info-bg);
+}
+.custom-modal.info .btn-primary-action {
+    background-color: var(--modal-info-bg);
+    color: var(--modal-info-text);
+    border: 1px solid var(--modal-info-bg);
+}
+.custom-modal.info .btn-primary-action:hover {
+    background-color: #31d2f2;
+    border-color: #31d2f2;
+}
+
+.custom-modal.borrowed .modal-icon {
+    background-color: var(--modal-borrowed-bg);
+    color: var(--modal-borrowed-text);
+}
+.custom-modal.borrowed .modal-title {
+    color: var(--modal-borrowed-bg);
+}
+.custom-modal.borrowed .btn-primary-action {
+    background-color: var(--modal-borrowed-bg);
+    color: var(--modal-borrowed-text);
+    border: 1px solid var(--modal-borrowed-bg);
+}
+.custom-modal.borrowed .btn-primary-action:hover {
+    background-color: #e06e04;
+    border-color: #e06e04;
+}
+
+.custom-modal .btn-secondary-action {
+    background-color: #f0f0f0;
+    color: #555;
+    border: 1px solid #ccc;
+}
+.custom-modal .btn-secondary-action:hover {
+    background-color: #e0e0e0;
+}
+
+/* Styles for Manage Categories Modal */
+#manageCategoriesModal .modal-header {
+    background-color: white;
+    color: #333;
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+#manageCategoriesModal .modal-header .modal-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #333;
+}
+#manageCategoriesModal .modal-header .btn-close {
+    filter: none;
+    position: static;
+}
+#manageCategoriesModal .modal-body {
+    padding: 30px;
+}
+/* NEW: Simplified Add Category Form Layout */
+#manageCategoriesModal #addCategoryForm .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#manageCategoriesModal #addCategoryForm .form-control {
+    width: 100%;
+    border-radius: 0.375rem;
+}
+#manageCategoriesModal #addCategoryForm .btn {
+    width: 100%;
+    border-radius: 0.375rem;
+}
+
+#manageCategoriesModal .category-list-table {
+    margin-top: 20px;
+    border: 1px solid #e9ecef;
+    border-radius: 0.25rem;
+    max-height: 250px;
+    overflow-y: auto;
+}
+#manageCategoriesModal .category-list-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    z-index: 1;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+}
+#manageCategoriesModal .category-list-table tbody td {
+    vertical-align: middle;
+}
+#manageCategoriesModal .category-list-table .btn-danger {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+}
+#manageCategoriesModal .modal-footer {
+    border-top: none;
+    padding: 20px 30px;
+    background-color: #f8f9fa;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* NEW: Styles for Items Management Modal (DataTables-like alignment) */
+#itemsModal .modal-header {
+    background-color: white;
+    color: #333;
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+#itemsModal .modal-header .modal-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #333;
+}
+#itemsModal .modal-header .btn-close {
+    filter: none;
+    position: static;
+}
+#itemsModal .modal-body {
+    padding: 25px;
+}
+
+#itemsModal .status-card {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+}
+#itemsModal .status-card .card-body {
+    padding: 15px;
+}
+#itemsModal .status-card .card-title {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+#itemsModal .status-card .status-count {
+    font-size: 2rem;
+}
+
+#itemsModal .dataTables_wrapper .dataTables_filter,
+#itemsModal .dataTables_wrapper .dataTables_length {
+    margin-bottom: 15px;
+}
+
+#itemsModal .dataTables_wrapper .dataTables_filter label,
+#itemsModal .dataTables_wrapper .dataTables_length select {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#itemsModal .dataTables_wrapper .dataTables_filter input,
+#itemsModal .dataTables_wrapper .dataTables_length select {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 6px 10px;
+}
+
+#itemsModal .table-responsive {
+    border: 1px solid #e9ecef;
+    border-radius: 0.25rem;
+    max-height: 350px;
+    overflow-y: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#itemsModal .table {
+    margin-bottom: 0;
+}
+
+#itemsModal .table thead th {
+    background-color: #f1f1f1;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 8px;
+    border-bottom: 2px solid #dee2e6;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#itemsModal .table tbody td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 10px 8px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+#itemsModal .table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+#itemsModal .table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+#itemsModal .item-checkbox {
+    transform: scale(1.2);
+}
+
+#itemsModal .item-status {
+    width: 150px;
+    display: inline-block;
+}
+
+#itemsModal .update-status {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+}
+
+#itemsModal .d-flex.justify-content-between.align-items-center.mb-3 {
+    padding: 0 5px;
+}
+
+#itemsModal .modal-footer {
+    border-top: none;
+    padding: 20px 25px;
+    background-color: #f8f9fa;
+    justify-content: flex-end;
+}
+
+/* Custom style for the edit button to match super_dashboard.php */
+.btn-warning {
+    background-color: var(--warning-color) !important;
+    color: black !important;
+    border-color: var(--warning-color) !important;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800 !important;
+    border-color: #e0a800 !important;
+}
+
+/* Styles for the new Actions dropdown button */
+.actions-dropdown .dropdown-toggle {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.actions-dropdown .dropdown-toggle:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.actions-dropdown .dropdown-menu {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 10px 0;
+}
+
+.actions-dropdown .dropdown-item {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    color: #333;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.actions-dropdown .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: var(--primary-color);
+}
+/* NEW: Style for the View QR button */
+#itemsModal .view-qr {
+    background-color: #e0e0e0;
+    border-color: #d0d0d0;
+    color: #7d3883ff;
+}
+#itemsModal .view-qr:hover {
+    background-color: #d0d0d0;
+    border-color: #c0c0c0;
+    color: #222;
+}
+
+/* Custom Alert Modal specific styles for QR view */
+.custom-modal.qr-view .modal-icon {
+    display: none;
+}
+.custom-modal.qr-view .modal-title {
+    color: black;
+}
+.custom-modal.qr-view .modal-message {
+    color: black;
+}
+
+/* Aesthetic QR Code Display Styling */
+.qr-code-display {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.qr-code-display:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.qr-code-display img {
+    max-width: 250px;
+    height: auto;
+    border: 5px solid #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.qr-code-display img:hover {
+    transform: scale(1.02);
+}
+
+.qr-code-display .qr-download-btn {
+    margin-top: 20px;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.qr-code-display .qr-download-btn:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Footer styling (copied from dashboard.php) */
+.footer {
+    padding: 15px; /* Reduced padding */
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.85rem; /* Slightly smaller font */
+    margin-top: auto; /* Push footer to the bottom */
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+}
+/* NEW: Style for the Manage Items button to match View QR's text color */
+.btn-violet-text-grey-bg {
+background-color: #e0e0e0; /* Same as view-qr's background */
+border-color: #d0d0d0; /* Same as view-qr's border */
+color: #7d3883ff; /* The violet text color */
+}
+.btn-violet-text-grey-bg:hover {
+background-color: #d0d0d0; /* Same as view-qr's hover background */
+border-color: #c0c0c0; /* Same as view-qr's hover border */
+color: #222; /* Same as view-qr's hover text color */
+}

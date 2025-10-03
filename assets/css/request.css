@@ -1,0 +1,1476 @@
+:root {
+    --violet: #5f2c82;
+    --light-violet: rgba(138, 43, 226, 0.1);
+    --primary-button-color: #2196F3; /* Changed to a shade of blue */
+    --info-button-color: #0dcaf0;
+    --warning-button-color: #ffc107;
+
+    /* Custom Modal Colors based on badges (from incoming.php) */
+    --modal-success-bg: #28a745; /* Approved badge - a standard green */
+    --modal-success-text: white;
+    --modal-error-bg: #dc3545;   /* Rejected badge */
+    --modal-error-text: white;
+    --modal-warning-bg: #ffc107; /* Pending badge */
+    --modal-warning-text: #000;
+    --modal-info-bg: #2196F3;    /* Info button - matches primary */
+    --modal-info-text: white;
+    --modal-borrowed-bg: #FF9800; /* Borrowed badge - a shade of orange */
+    --modal-borrowed-text: white;
+    --modal-cancelled-bg: #9E9E9E; /* Cancelled badge - a shade of grey */
+    --modal-cancelled-text: white;
+
+    /* Government/BRSMS themed colors */
+    --gov-blue: #0056b3; /* Darker blue for official feel */
+    --gov-green: #28a745;
+    --gov-red: #dc3545;
+    --gov-gray: #6c757d;
+    --gov-light-gray: #f8f9fa;
+    --gov-text-dark: #343a40;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #F0F8FF; /* Changed to AliceBlue for softer contrast */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+    flex-grow: 1; /* Allow wrapper to grow and fill available space */
+}
+/* START: Copied from dashboard.php sidebar styles */
+.sidebar {
+    background-color: #5f2c82;
+    min-height: 100vh;
+    padding: 30px 20px;
+    color: white;
+    display: flex; /* Use flexbox for sidebar content */
+    flex-direction: column; /* Stack items vertically */
+    /* Added for fixed sidebar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1000; /* Ensure sidebar is above other content */
+}
+.sidebar .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+.sidebar .logo-circle {
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar .logo-circle img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+.sidebar .logo-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 18px;
+    display: block;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-bottom: 12px;
+    transition: background 0.2s ease;
+    font-weight: normal; /* Ensure sidebar text is not bold */
+}
+.sidebar a i {
+    margin-right: 12px;
+}
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 14px 18px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+}
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+/* END: Copied from dashboard.php sidebar styles */
+
+#mainContentToggle {
+    display: none;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 4px;
+    display: flex;
+    flex-direction: column; /* Added to allow content and footer to stack */
+    /* Added for fixed sidebar offset */
+    margin-left: 25%; /* Adjust this based on your sidebar width (col-md-3) */
+    width: 75%; /* Adjust this based on your sidebar width (col-md-3) */
+}
+@media (min-width: 992px) { /* For lg and up, sidebar is col-lg-2 */
+    .main-content {
+        margin-left: 16.66666667%; /* col-lg-2 width */
+        width: 83.33333333%; /* 100% - col-lg-2 width */
+    }
+}
+@media (max-width: 991.98px) { /* For md, sidebar is col-md-3 */
+    .main-content {
+        margin-left: 25%; /* col-md-3 width */
+        width: 75%; /* 100% - col-md-3 width */
+    }
+}
+@media (max-width: 767.98px) { /* For sm and down, sidebar is full width, not fixed */
+    .sidebar {
+        position: relative;
+        min-height: auto;
+        height: auto;
+        width: 100%;
+    }
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+
+/* New style for the Dashboard text (copied from dashboard.php) */
+.dashboard-title {
+    font-size: 2rem; /* Slightly smaller font size */
+    font-weight: normal; /* Not bold */
+    color: #343a40;
+    margin-bottom: 20px;
+    display: block;
+    text-align: left;
+    padding-left: 15px;
+}
+
+/* Content Area below Top Bar */
+.content-area {
+    padding: 25px;
+    flex-grow: 1; /* Allow content area to grow and push footer down */
+}
+
+/* New Combined Container */
+.resources-main-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    gap: 20px; /* Space between search/filter and resource grid */
+}
+
+/* Resources Grid Container (now a child of resources-main-container) */
+.resources-grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Consistent gap */
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+    max-height: 575px; /* Adjusted height for better visibility */
+    padding-top: 10px; /* Add some padding at the top */
+}
+
+/* Individual Resource Card */
+.resource-card {
+    /* Adjusted for smaller cards: */
+    flex: 0 0 calc(14.28% - 10px); /* 7 cards per row (100% / 7 = 14.28%) */
+    max-width: calc(14.28% - 10px); /* 7 cards per row */
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 250px; /* Reduced height */
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.resource-card img {
+    width: 100%;
+    height: 100px; /* Reduced image height */
+    object-fit: cover;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.resource-card-body {
+    padding: 10px; /* Reduced padding */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.resource-card-body h5 {
+    font-size: 0.9rem; /* Reduced font size for title */
+    font-weight: 600;
+    margin-bottom: 4px; /* Reduced margin */
+    color: var(--violet);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.resource-card-body p {
+    font-size: 0.75rem; /* Reduced font size for description */
+    color: #666;
+    margin-bottom: 6px; /* Reduced margin */
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Keep lines for description */
+    -webkit-box-orient: vertical;
+}
+
+.resource-card-footer {
+    padding: 10px; /* Reduced padding */
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #f9f9f9;
+}
+
+.status-available {
+    background-color: #28a745;
+    color: white;
+    padding: 0.2em 0.5em; /* Reduced padding */
+    border-radius: 0.2rem;
+    font-size: 0.7em; /* Reduced font size */
+    font-weight: 600;
+    margin-bottom: 6px; /* Reduced margin */
+}
+
+.btn-request {
+    background-color: var(--primary-button-color);
+    border-color: var(--primary-button-color);
+    color: white;
+    padding: 5px 10px; /* Reduced padding */
+    font-size: 0.8rem; /* Reduced font size */
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+    width: 100%;
+    text-align: center;
+}
+.btn-request:hover {
+    background-color: #1976D2; /* Darker blue on hover */
+    border-color: #1976D2;
+    color: white;
+}
+
+/* No Resources Message */
+.no-resources-message {
+    background: white; /* Changed to white as it's inside the main container */
+    border-radius: 10px; /* Retain border-radius */
+    padding: 30px;
+    box-shadow: none; /* Remove shadow as parent has it */
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    margin-top: 20px; /* Add margin to separate from search/filter */
+}
+
+/* Request Form Container Specifics */
+#requestFormContainer {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    margin-bottom: 20px; /* Space below the form */
+}
+#requestFormContainer .form-header {
+    background: linear-gradient(to right, #5f2c82, #8a2be2); /* Violet gradient */
+    color: white;
+    padding: 20px 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#requestFormContainer .form-header h5 {
+    font-weight: bold;
+    font-size: 1.3rem; /* Slightly smaller */
+    margin: 0;
+}
+#requestFormContainer .form-body {
+    padding: 25px; /* Slightly smaller padding */
+    background-color: #f8f9fa;
+    color: #000;
+}
+#requestFormContainer .form-label {
+    font-weight: 600;
+    margin-bottom: 0.4rem; /* Slightly smaller margin */
+    font-size: 0.9rem; /* Slightly smaller */
+    color: #000;
+    text-align: left;
+    width: 100%;
+}
+#requestFormContainer .form-control {
+    font-size: 0.9rem; /* Slightly smaller */
+    padding: 0.6rem 0.8rem; /* Slightly smaller padding */
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    color: #000;
+    width: 100%;
+}
+#requestFormContainer .form-control:focus {
+    border-color: var(--primary-button-color);
+    box-shadow: 0 0 0 0.25rem rgba(33, 150, 243, 0.25);
+}
+#requestFormContainer .form-control[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+#requestFormContainer .row.g-3 > div {
+    padding-top: 0.4rem; /* Slightly smaller padding */
+    padding-bottom: 0.4rem; /* Slightly smaller padding */
+}
+#requestFormContainer #requestQuantity {
+    max-width: 100%;
+}
+
+/* Red asterisk for required fields */
+.form-label .required-asterisk {
+    color: var(--gov-red);
+    margin-left: 5px;
+}
+#requestFormContainer .invalid-feedback {
+    color: var(--gov-red);
+    font-size: 0.8rem; /* Slightly smaller */
+    margin-top: 0.2rem; /* Slightly smaller margin */
+}
+/* Ensure invalid feedback is visible when input is invalid */
+.form-control.is-invalid + .invalid-feedback {
+    display: block;
+}
+#requestFormContainer .alert-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-color: var(--gov-red);
+    color: var(--gov-red);
+    padding: 0.6rem 0.8rem; /* Slightly smaller padding */
+    border-radius: 8px;
+    font-size: 0.85rem; /* Slightly smaller */
+}
+/* Changed to green as requested */
+#requestFormContainer .form-check-label.text-success-custom {
+    color: var(--violet) !important; /* Use violet color */
+    font-weight: 600; /* Optional: make it bold for emphasis */
+    font-size: 0.9rem; /* Slightly smaller */
+}
+#requestFormContainer .form-check-label.text-success-custom a {
+    color: var(--violet) !important; /* Match link color to violet */
+    text-decoration: underline;
+}
+#requestFormContainer .form-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 15px 25px; /* Slightly smaller padding */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#requestFormContainer .btn-primary {
+    background-color: var(--violet);
+    border-color: var(--violet);
+    color: white;
+    font-weight: 600;
+    padding: 12px 30px; /* Slightly smaller padding */
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    font-size: 1rem; /* Slightly smaller */
+    width: auto;
+    min-width: 180px; /* Slightly smaller min-width */
+}
+#requestFormContainer .btn-primary:hover:not(:disabled) {
+    background-color: #4a2263; /* Darker violet on hover */
+    border-color: #4a2263;
+    color: white;
+    transform: translateY(-2px);
+}
+#requestFormContainer .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Responsive adjustments for resource cards */
+@media (max-width: 1600px) {
+    .resource-card {
+        flex: 0 0 calc(16.66% - 10px); /* 6 cards per row */
+        max-width: calc(16.66% - 10px);
+    }
+}
+
+@media (max-width: 1400px) {
+    .resource-card {
+        flex: 0 0 calc(20% - 10px); /* 5 cards per row */
+        max-width: calc(20% - 10px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .resource-card {
+        flex: 0 0 calc(25% - 10px); /* 4 cards per row */
+        max-width: calc(25% - 10px);
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        min-height: auto;
+        padding-bottom: 15px;
+    }
+    .main-content {
+        padding: 15px;
+    }
+    .resource-card {
+        flex: 0 0 calc(33.33% - 10px); /* 3 cards per row */
+        max-width: calc(33.33% - 10px);
+    }
+    .resources-grid-container {
+        padding: 15px;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .resource-card {
+        flex: 0 0 calc(50% - 10px); /* 2 cards per row */
+        max-width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 576px) {
+    .resource-card {
+        flex: 0 0 calc(100% - 0px); /* 1 card per row */
+        max-width: calc(100% - 0px);
+    }
+}
+
+/* Terms and Conditions Modal Specific Styles */
+#termsAndConditionsModal .modal-dialog {
+    max-width: 900px;
+}
+#termsAndConditionsModal .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+#termsAndConditionsModal .modal-header {
+    background: linear-gradient(to right, #5f2c82, #8a2be2);
+    color: white;
+    border-bottom: none;
+    padding: 20px 30px; /* Consistent padding */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#termsAndConditionsModal .modal-header h5 {
+    font-weight: bold;
+    font-size: 1.5rem;
+    flex-grow: 1;
+    text-align: left;
+}
+#termsAndConditionsModal .modal-body {
+    max-height: 65vh;
+    overflow-y: auto;
+    padding: 30px; /* Consistent padding */
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: black;
+    text-align: left; /* Ensure body text is left-aligned */
+}
+.terms-intro-box {
+    background-color: #f0e6fa; /* Light purple background */
+    border-left: 5px solid var(--violet);
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #333;
+}
+#termsAndConditionsModal .modal-body h6 {
+    font-weight: bold;
+    color: #333; /* Dark gray/black for section titles */
+    margin-top: 25px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    /* Removed border-bottom and padding-bottom */
+}
+#termsAndConditionsModal .modal-body p,
+#termsAndConditionsModal .modal-body ul {
+    margin-bottom: 15px;
+}
+#termsAndConditionsModal .modal-body ul {
+    list-style-type: none; /* Changed from disc to none */
+    padding-left: 20px; /* Indent for bullet points */
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+#termsAndConditionsModal .modal-body ul li {
+    margin-bottom: 15px;
+    padding-left: 0; /* Remove extra padding */
+    position: relative;
+}
+#termsAndConditionsModal .modal-body ul li::before {
+    content: ""; /* Remove checkmark icon */
+    font-family: "";
+    font-weight: normal;
+    position: static; /* Reset positioning */
+    left: auto;
+    top: auto;
+    color: inherit;
+    font-size: inherit;
+}
+#termsAndConditionsModal .modal-body .important-text {
+    color: var(--gov-blue); /* Changed to gov-blue */
+    font-weight: bold;
+}
+#termsAndConditionsModal .modal-footer {
+    background-color: #f8f9fa;
+    border-top: none;
+    padding: 20px 30px; /* Consistent padding */
+    justify-content: center;
+    gap: 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+#termsAndConditionsModal .btn-agree {
+    background-color: var(--violet); /* Primary purple */
+    border-color: var(--violet);
+    color: white;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    font-size: 1.1rem;
+}
+#termsAndConditionsModal .btn-agree:hover:not(:disabled) {
+    background-color: #4a2263; /* Darker purple on hover */
+    transform: translateY(-2px);
+}
+#termsAndConditionsModal .btn-agree:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+#termsAndConditionsModal .btn-cancel {
+    background-color: var(--gov-gray); /* Secondary gray */
+    color: white;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    font-size: 1.1rem;
+}
+#termsAndConditionsModal .btn-cancel:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+/* Hide main content until terms are agreed - handled by JS now */
+/* #mainContentWrapper {
+    display: none;
+} */
+
+/* New styles for integrated search/filter and dropdown */
+/* Removed .resources-header as it's now part of .resources-main-container */
+
+.resources-main-container .search-filter-row {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.resources-main-container .search-input-group {
+    position: relative;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.resources-main-container .search-input-group input {
+    padding-left: 40px;
+    border-radius: 25px;
+    border: 1px solid #ced4da;
+    width: 100%;
+    font-size: 1rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.resources-main-container .search-input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 1rem;
+}
+
+.resources-main-container .dropdown-toggle {
+    border: 1px solid var(--primary-button-color);
+    color: var(--primary-button-color);
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    text-align: left;
+    background-color: white;
+    width: auto;
+    min-width: 220px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.resources-main-container .dropdown-toggle:hover {
+    background-color: var(--primary-button-color);
+    color: white;
+}
+
+.resources-main-container .dropdown-menu {
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.resources-main-container .dropdown-item {
+    padding: 10px 15px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.resources-main-container .dropdown-item:hover,
+.resources-main-container .dropdown-item:active {
+    background-color: var(--primary-button-color);
+    color: white;
+}
+
+/* Adjustments for smaller screens for the new header */
+@media (max-width: 768px) {
+    .resources-main-container .search-filter-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .resources-main-container .search-input-group,
+    .resources-main-container .dropdown-toggle {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+/* Custom Alert Modal Styles (copied from incoming.php) */
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.custom-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.custom-modal {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    /* Changed max-width to match inventory.php's custom-modal */
+    max-width: 400px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.custom-modal-overlay.show .custom-modal {
+    transform: translateY(0);
+}
+
+.custom-modal .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.custom-modal .modal-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+.custom-modal .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.custom-modal .modal-message {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.custom-modal .modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.custom-modal .modal-actions button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Modal Type Styles (copied from incoming.php, adjusted for request page needs) */
+.custom-modal.success .modal-icon {
+    background-color: var(--modal-success-bg);
+}
+.custom-modal.success .modal-title {
+    color: var(--modal-success-bg);
+}
+.custom-modal.success .btn-primary-action {
+    background-color: var(--modal-success-bg);
+    color: var(--modal-success-text);
+    border: 1px solid var(--modal-success-bg);
+}
+.custom-modal.success .btn-primary-action:hover {
+    background-color: #218838; /* Darker green on hover */
+    border-color: #218838;
+}
+
+.custom-modal.error .modal-icon {
+    background-color: var(--modal-error-bg);
+}
+.custom-modal.error .modal-title {
+    color: var(--modal-error-bg);
+}
+.custom-modal.error .btn-primary-action {
+    background-color: var(--modal-error-bg);
+    color: var(--modal-error-text);
+    border: 1px solid var(--modal-error-bg);
+}
+.custom-modal.error .btn-primary-action:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+.custom-modal .btn-secondary-action {
+    background-color: #f0f0f0;
+    color: #555;
+    border: 1px solid #ccc;
+}
+.custom-modal .btn-secondary-action:hover {
+    background-color: #e0e0e0;
+}
+
+/* Datepicker specific styles */
+.ui-datepicker-calendar .ui-state-active {
+    background: var(--primary-button-color) !important;
+    color: white !important;
+}
+.ui-datepicker-calendar .ui-state-highlight {
+    border: 1px solid var(--primary-button-color) !important;
+}
+.ui-datepicker-calendar .fully-booked {
+    background-color: #dc3545 !important; /* Red for fully booked */
+    color: white !important;
+}
+.ui-datepicker-calendar .available-date {
+    background-color: #28a745 !important; /* Green for available */
+    color: white !important;
+}
+.ui-datepicker-calendar .user-booked {
+    background-color: #ffc107 !important; /* Yellow for user booked */
+    color: black !important;
+}
+/* Ensure day numbers are visible even when disabled */
+.ui-datepicker-calendar .ui-datepicker-unselectable.ui-state-disabled {
+    opacity: 1 !important; /* Keep opacity at 1 to make numbers visible */
+    background-image: none !important; /* Remove any background image */
+    filter: none !important; /* Remove any filter */
+}
+/* Adjust text color for disabled states to ensure visibility */
+.ui-datepicker-calendar .ui-datepicker-unselectable.ui-state-disabled span {
+    color: white !important; /* Default to white for disabled, will be overridden by specific classes */
+}
+/* MODIFIED: Ensure fully-booked dates have visible numbers */
+.ui-datepicker-calendar .ui-datepicker-unselectable.ui-state-disabled.fully-booked span,
+.ui-datepicker-calendar .fully-booked span { /* Added .fully-booked span for consistency */
+    color: white !important; /* White text on red background */
+    font-weight: bold; /* Make the number bold */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for better contrast */
+}
+.ui-datepicker-calendar .ui-datepicker-unselectable.ui-state-disabled.available-date span {
+    color: white !important; /* White text on green background */
+}
+.ui-datepicker-calendar .ui-datepicker-unselectable.ui-state-disabled.user-booked span {
+    color: black !important; /* Black text on yellow background */
+}
+/* For past dates that are disabled, make them grey */
+.ui-datepicker-calendar .ui-datepicker-unselectable.ui-state-disabled:not(.fully-booked):not(.available-date):not(.user-booked) span {
+    color: #6c757d !important; /* Grey for general disabled (past) dates */
+}
+
+/* NEW: Datepicker header and overall background color */
+.ui-datepicker-header {
+    background-color: #E6E6FA !important; /* Lavender */
+    border: none !important;
+    color: #333 !important; /* Darker text for contrast */
+}
+
+.ui-datepicker-title {
+    color: #333 !important; /* Darker text for contrast */
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+    color: #5f2c82 !important; /* Violet for navigation arrows */
+}
+
+.ui-datepicker-calendar {
+    background-color: #F8F8FF !important; /* GhostWhite for the calendar body, slightly off-white */
+}
+
+
+/* Notice Modal Specific Styles */
+#noticeModal .modal-dialog {
+    max-width: 900px;
+}
+#noticeModal .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+#noticeModal .modal-header {
+    background: linear-gradient(to right, #5f2c82, #8a2be2);
+    color: white;
+    border-bottom: none;
+    padding: 20px 30px; /* Consistent padding */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#noticeModal .modal-header h5 {
+    font-weight: bold;
+    font-size: 1.5rem;
+    flex-grow: 1;
+    text-align: left;
+}
+#noticeModal .modal-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    padding: 30px; /* Consistent padding */
+    color: black;
+    max-height: 60vh;
+    overflow-y: auto;
+    text-align: left; /* Ensure body text is left-aligned */
+}
+.notice-intro-box { /* New class for the boxed intro */
+    background-color: #f0e6fa; /* Light purple background */
+    border-left: 5px solid var(--violet);
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #333;
+}
+#noticeModal .modal-body h4.modal-title-in-body {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #333; /* Dark gray/black for section titles */
+    margin-bottom: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#noticeModal .modal-body h4.modal-title-in-body i {
+    font-size: 2rem;
+    margin-right: 15px;
+    color: var(--violet); /* Violet icon */
+}
+#noticeModal .modal-body .btn-close-custom {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: white; /* White close button on header */
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+#noticeModal .modal-body .btn-close-custom:hover {
+    opacity: 1;
+}
+#noticeModal .modal-body h6 {
+    font-weight: bold;
+    color: #333; /* Dark gray/black for section titles */
+    margin-top: 25px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    /* Removed border-bottom and padding-bottom */
+}
+#noticeModal .modal-body ul {
+    list-style-type: none; /* Changed from disc to none */
+    padding-left: 20px; /* Indent for bullet points */
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+#noticeModal .modal-body ul li {
+    margin-bottom: 15px;
+    padding-left: 0; /* Remove extra padding */
+    position: relative;
+}
+#noticeModal .modal-body ul li::before {
+    content: ""; /* Remove checkmark icon */
+    font-family: "";
+    font-weight: normal;
+    position: static; /* Reset positioning */
+    left: auto;
+    top: auto;
+    color: inherit;
+    font-size: inherit;
+}
+#noticeModal .modal-body .important-text {
+    color: var(--gov-blue); /* Changed to gov-blue */
+    font-weight: bold;
+}
+/* Checkbox styling */
+#noticeModal .form-check {
+    background-color: #f0e6fa; /* Light purple background for checkbox area */
+    border: 1px solid var(--violet);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-top: 25px;
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically align items */
+    gap: 15px; /* Space between checkbox and label */
+}
+#noticeModal .form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduced gap for closer spacing */
+    padding: 12px 20px; /* Ensure enough padding inside the container */
+    background-color: #f0e6fa;
+    border: 1px solid var(--violet);
+    border-radius: 8px;
+}
+#noticeModal .form-check-input {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--violet);
+    flex-shrink: 0;
+    margin: 0; /* Remove default margin to avoid extra space */
+    margin-right: 0; /* Ensure no extra right margin */
+    margin-left: 0;  /* Ensure no extra left margin */
+    vertical-align: middle;
+}
+#noticeModal .form-check-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    flex-grow: 1;
+    /* Optional: adjust padding-left if needed */
+    padding-left: 0;
+
+}
+/* Updated style for the continue button */
+#noticeModal .btn-continue {
+    background-color: var(--violet); /* Changed to violet */
+    border-color: var(--violet);
+    color: white;
+    font-weight: 600;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+#noticeModal .btn-continue:hover:not(:disabled) {
+    background-color: #4a2263; /* Darker violet on hover */
+    border-color: #4a2263;
+    transform: translateY(-2px);
+}
+#noticeModal .btn-continue:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+#noticeModal .modal-footer {
+    padding: 20px 30px; /* Consistent padding */
+    border-top: none;
+    justify-content: center;
+    gap: 15px;
+    background-color: #f8f9fa;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* Footer styling (copied from dashboard.php) */
+.footer {
+    padding: 15px; /* Reduced padding */
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.85rem; /* Slightly smaller font */
+    margin-top: auto; /* Push footer to the bottom */
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    /* Added for fixed footer */
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 999; /* Ensure footer is above content but below sidebar */
+}
+
+/* NEW STYLES FOR REFINED UI */
+.barangay-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.barangay-card {
+    background-color: #E6E6FA; /* Lavender background for barangay cards */
+    border: 1px solid #d0d0e0; /* Slightly darker border for contrast */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 180px;
+}
+
+.barangay-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.barangay-card .brgy-icon {
+    font-size: 3rem;
+    color: var(--violet);
+    margin-bottom: 15px;
+}
+
+.barangay-card h5 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--gov-blue);
+    margin-bottom: 10px;
+}
+
+.barangay-card .btn-view-resources {
+    background-color: var(--primary-button-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    width: 100%;
+    max-width: 180px;
+}
+
+.barangay-card .btn-view-resources:hover {
+    background-color: #1976D2;
+}
+
+.barangay-search-container {
+    padding: 15px 20px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.barangay-search-container .search-input-group {
+    flex-grow: 1;
+}
+
+/* UPDATED: resources-view-header styles */
+.resources-view-header {
+    display: flex;
+    justify-content: space-between; /* Pushes items to ends */
+    align-items: center; /* Vertically centers items */
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 15px;
+}
+
+.resources-view-header h4 {
+    margin: 0;
+    color: var(--gov-blue);
+    font-weight: 600;
+    text-align: left; /* Align title left */
+    flex-grow: 0; /* Don't let it grow too much */
+    white-space: nowrap; /* Prevent wrapping of title */
+}
+
+.resources-view-header .search-input-group {
+    flex-grow: 1; /* Allow search to take available space */
+    max-width: 300px; /* Limit max width */
+    order: 1; /* Default order */
+}
+
+.resources-view-header .btn-back {
+    background: linear-gradient(to right, #5f2c82, #8a2be2); /* Violet gradient */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+.resources-view-header .btn-back:hover {
+    background: linear-gradient(to right, #4a2263, #6a1fbf); /* Darker violet gradient on hover */
+    color: white;
+}
+
+/* Hide/Show sections */
+#partnerBarangaysSection {
+    display: block; /* Default visible */
+}
+
+#resourcesFromSelectedBarangaySection {
+    display: none; /* Default hidden */
+}
+
+/* Adjustments for smaller screens for barangay cards */
+@media (max-width: 768px) {
+    .barangay-card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .barangay-search-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    /* UPDATED: resources-view-header for small screens */
+    .resources-view-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .resources-view-header h4 {
+        text-align: center;
+        width: 100%;
+        order: 0;
+    }
+    .resources-view-header .search-input-group {
+        max-width: 100%;
+        order: 1;
+    }
+    .resources-view-header .btn-back {
+        width: 100%;
+        order: 2;
+    }
+}
+
+/* New styles for Request Resource Guide */
+.request-guide {
+    background-color: #e6f7ff; /* Light blue background */
+    border: 1px solid #91d5ff; /* Blue border */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.request-guide h6 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--gov-blue);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.request-guide h6 i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+    color: var(--gov-blue);
+}
+
+.request-guide ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.request-guide ul li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    color: #333;
+}
+
+.request-guide ul li:last-child {
+    margin-bottom: 0;
+}
+
+.request-guide ul li::before {
+    content: "\f05a"; /* Info circle icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--primary-button-color);
+    font-size: 1rem;
+}
+
+/* Styling for the barangay card image */
+.barangay-card .brgy-image {
+    width: 80px; /* Adjust size as needed */
+    height: 80px; /* Adjust size as needed */
+    object-fit: cover;
+    border-radius: 50%; /* Make it circular */
+    margin-bottom: 15px;
+    border: 2px solid #e0e0e0;
+}
+
+/* NEW STYLES FOR THE REVISED HEADER */
+.resources-view-header.revised {
+    display: flex;
+    flex-direction: row; /* Keep items in a row */
+    justify-content: space-between; /* Space out items */
+    align-items: center; /* Vertically align items */
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 15px; /* Space between items */
+}
+
+.resources-view-header.revised .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1; /* Allow left section to grow */
+    min-width: 250px; /* Ensure it doesn't get too small */
+}
+
+.resources-view-header.revised .header-left h4 {
+    margin: 0;
+    color: var(--gov-blue);
+    font-weight: 600;
+    white-space: nowrap; /* Prevent wrapping of title */
+}
+
+.resources-view-header.revised .search-input-group {
+    flex-grow: 1; /* Allow search to take available space */
+    max-width: 400px; /* Limit max width */
+    order: 0; /* Place search first in its flex container */
+}
+
+.resources-view-header.revised .btn-back {
+    order: 1; /* Place back button second in its flex container */
+    white-space: nowrap; /* Prevent wrapping of button text */
+}
+
+/* Responsive adjustments for the revised header */
+@media (max-width: 768px) {
+    .resources-view-header.revised {
+        flex-direction: column; /* Stack items vertically */
+        align-items: stretch; /* Stretch items to full width */
+        gap: 10px;
+    }
+    .resources-view-header.revised .header-left {
+        flex-direction: column; /* Stack title and search vertically */
+        align-items: stretch;
+        gap: 10px;
+        min-width: unset; /* Remove min-width on small screens */
+    }
+    .resources-view-header.revised .header-left h4 {
+        text-align: center; /* Center title on small screens */
+        width: 100%; /* Take full width */
+    }
+    .resources-view-header.revised .search-input-group {
+        max-width: 100%; /* Full width */
+    }
+    .resources-view-header.revised .btn-back {
+        width: 100%; /* Full width */
+    }
+}
+
+/* NEW CSS FOR TABLE VIEW */
+.resource-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.resource-table th,
+.resource-table td {
+    padding: 12px 15px;
+    /* Remove vertical borders */
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #e0e0e0; /* Keep horizontal top border */
+    border-bottom: 1px solid #e0e0e0; /* Keep horizontal bottom border */
+    text-align: left;
+    vertical-align: middle;
+}
+
+.resource-table th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+    color: #333;
+    border-top: none; /* Remove top border for header cells */
+}
+
+.resource-table tbody tr:first-child td {
+    border-top: none; /* Remove top border for the first row's cells */
+}
+
+.resource-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.resource-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+.resource-table-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover; /* Ensure image covers the area */
+    display: block; /* Remove extra space below image */
+    border-radius: 4px;
+}
+
+/* Ensure the image cell itself has no padding issues */
+.resource-table td:first-child { /* Assuming image is in the first column */
+    padding: 5px; /* Adjust padding to make image fill better */
+    text-align: center; /* Center the image within the cell */
+}
+
+
+.resource-table .btn-request {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+/* Adjust resources-grid-container for table view */
+.resources-grid-container.table-view {
+    display: block; /* Override flex for table layout */
+    overflow-y: auto;
+    max-height: 575px;
+    padding-top: 0; /* Remove top padding as table has its own spacing */
+}
+
+/* View Toggle Buttons */
+.view-toggle-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.view-toggle-buttons .btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #ced4da;
+}
+
+.view-toggle-buttons .btn.active {
+    background-color: var(--primary-button-color);
+    color: white;
+    border-color: var(--primary-button-color);
+}

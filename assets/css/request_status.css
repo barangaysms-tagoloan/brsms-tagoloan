@@ -1,0 +1,771 @@
+:root {
+    --violet: #5f2c82;
+    --light-violet: rgba(138, 43, 226, 0.1);
+    --primary-button-color: #2196F3; /* Changed to a shade of blue */
+    --info-button-color: #0dcaf0;
+    --warning-button-color: #ffc107;
+
+    /* Custom Modal Colors based on badges (from incoming.php) */
+    --modal-success-bg: #28a745; /* Approved badge - a standard green */
+    --modal-success-text: white;
+    --modal-error-bg: #dc3545;   /* Rejected badge */
+    --modal-error-text: white;
+    --modal-warning-bg: #ffc107; /* Pending badge */
+    --modal-warning-text: #000;
+    --modal-info-bg: #2196F3;    /* Info button - matches primary */
+    --modal-info-text: white;
+    --modal-borrowed-bg: #FF9800; /* Borrowed badge - a shade of orange */
+    --modal-borrowed-text: white;
+    --modal-cancelled-bg: #9E9E9E; /* Cancelled badge - a shade of grey */
+    --modal-cancelled-text: white;
+
+    /* Footer colors from dashboard.php */
+    --footer-bg: #f8f9fa;
+    --footer-text-color: #6c757d;
+    --footer-border-color: #e9ecef;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #F0F8FF; /* Changed to AliceBlue for softer contrast */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column; /* Make body a flex container for footer push */
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+    flex-grow: 1; /* Allow wrapper to grow and fill available space */
+}
+/* START: Copied from dashboard.php sidebar styles */
+.sidebar {
+    background-color: #5f2c82;
+    min-height: 100vh; /* Changed to 100vh to ensure it always takes full height */
+    padding: 30px 20px;
+    color: white;
+    display: flex; /* Use flexbox for sidebar content */
+    flex-direction: column; /* Stack items vertically */
+}
+.sidebar .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+.sidebar .logo-circle {
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar .logo-circle img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+.sidebar .logo-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 18px;
+    display: block;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-bottom: 12px;
+    transition: background 0.2s ease;
+    font-weight: normal; /* Ensure sidebar text is not bold */
+}
+.sidebar a i {
+    margin-right: 12px;
+}
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 14px 18px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+}
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+/* END: Copied from dashboard.php sidebar styles */
+
+#mainContentToggle {
+    display: none;
+}
+
+.main-content {
+    flex-grow: 1; /* Allow main content to grow and push footer down */
+    padding: 4px;
+    display: flex; /* Make main-content a flex container */
+    flex-direction: column; /* Stack its children vertically */
+}
+
+/* New style for the Dashboard text (copied from request.php) */
+.dashboard-title {
+    font-size: 2rem; /* Slightly smaller font size */
+    font-weight: normal; /* Not bold */
+    color: #343a40;
+    margin-bottom: 20px;
+    display: block;
+    text-align: left;
+    padding-left: 15px;
+}
+
+/* Status Colors */
+.status-pending {
+    background-color: rgba(255, 193, 7, 0.1);
+}
+.status-approved {
+    background-color: rgba(40, 167, 69, 0.1);
+}
+.status-rejected {
+    background-color: rgba(220, 53, 69, 0.1);
+}
+.status-cancelled {
+    background-color: rgba(108, 117, 125, 0.1);
+}
+.status-completed {
+    background-color: rgba(23, 162, 184, 0.1);
+}
+.status-borrowed {
+    background-color: rgba(253, 126, 20, 0.1);
+}
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.badge-pending {
+    background-color: var(--modal-warning-bg);
+    color: var(--modal-warning-text);
+}
+.badge-approved {
+    background-color: var(--modal-success-bg);
+    color: var(--modal-success-text);
+}
+.badge-rejected {
+    background-color: var(--modal-error-bg);
+    color: var(--modal-error-text);
+}
+.badge-cancelled {
+    background-color: var(--modal-cancelled-bg);
+    color: var(--modal-cancelled-text);
+}
+.badge-completed {
+    background-color: #17a2b8;
+    color: white;
+}
+.badge-borrowed {
+    background-color: var(--modal-borrowed-bg);
+    color: var(--modal-borrowed-text);
+}
+
+/* Table Wrapper - New styles for combined search/filter and table */
+.table-wrapper {
+    max-height: calc(100vh - 180px); /* Adjusted for header and footer */
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    flex-grow: 1; /* Allow table wrapper to grow */
+}
+
+/* Search and Filter Row - Integrated into table-wrapper */
+.search-filter-row {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 11;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.search-filter-row .search-input-group {
+    position: relative;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.search-filter-row .search-input-group input {
+    padding-left: 40px;
+    border-radius: 25px;
+    border: 1px solid #ced4da;
+    width: 100%;
+    font-size: 1rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.search-filter-row .search-input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 1rem;
+}
+
+.search-filter-row .form-select {
+    width: auto;
+    min-width: 180px;
+    border-radius: 25px;
+    font-size: 1rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* Request List Container - Replaces table structure */
+.request-list-container {
+    padding: 15px;
+}
+
+/* Wrapper for each card and its remove button */
+.request-card-wrapper {
+    display: flex;
+    flex-direction: column; /* Stack card and remove button vertically */
+    margin-bottom: 15px; /* Space between wrappers */
+    position: relative; /* For positioning the remove button */
+    border-radius: 8px; /* Match card border-radius */
+    overflow: hidden; /* Ensure remove button doesn't overflow */
+}
+
+/* Request Card Row - New style for each request entry */
+.request-card-row {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex; /* Use flexbox for the main row */
+    align-items: center; /* Vertically align items */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    flex-grow: 1; /* Allow the card to take available space */
+    position: relative; /* For positioning the remove button inside */
+}
+
+.request-card-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Status-based background colors for card rows */
+.request-card-row.status-pending {
+    background-color: rgba(255, 193, 7, 0.05);
+    border-left: 5px solid var(--modal-warning-bg);
+}
+.request-card-row.status-approved {
+    background-color: rgba(40, 167, 69, 0.05);
+    border-left: 5px solid var(--modal-success-bg);
+}
+.request-card-row.status-rejected {
+    background-color: rgba(220, 53, 69, 0.05);
+    border-left: 5px solid var(--modal-error-bg);
+}
+.request-card-row.status-cancelled {
+    background-color: rgba(108, 117, 125, 0.05);
+    border-left: 5px solid var(--modal-cancelled-bg);
+}
+.request-card-row.status-completed {
+    background-color: rgba(23, 162, 184, 0.05);
+    border-left: 5px solid #17a2b8;
+}
+.request-card-row.status-borrowed {
+    background-color: rgba(253, 126, 20, 0.05);
+    border-left: 5px solid var(--modal-borrowed-bg);
+}
+
+/* New flex layout for info groups within the card row */
+.request-card-row .row-content {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    flex-grow: 1; /* Allow content to take available space */
+    align-items: center;
+}
+
+.request-card-row .info-group {
+    padding-right: 15px; /* Space between columns */
+    margin-bottom: 5px; /* Small margin for wrapped items */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.request-card-row .info-group strong {
+    display: block;
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 3px;
+}
+
+.request-card-row .info-group span {
+    font-size: 1rem;
+    color: #343a40;
+    font-weight: 500;
+    white-space: nowrap; /* Prevent wrapping of values */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for long values */
+    display: block; /* Ensure span takes full width for ellipsis */
+}
+
+/* Specific width adjustments for better alignment */
+/* Removed .info-group.id-col */
+.request-card-row .info-group.resource-col {
+    flex-basis: 200px; /* Increased base width for resource name */
+    flex-grow: 1; /* Allow resource name to take more space */
+    min-width: 150px;
+}
+.request-card-row .info-group.barangay-col {
+    flex-basis: 180px; /* Increased base width for barangay name */
+    flex-grow: 1; /* Allow barangay name to take more space */
+    min-width: 150px;
+}
+.request-card-row .info-group.quantity-col {
+    flex-basis: 90px; /* Fixed width for quantity */
+    width: 90px;
+}
+.request-card-row .info-group.status-col {
+    flex-basis: 120px; /* Fixed width for status badge */
+    width: 120px;
+}
+.request-card-row .info-group.date-col {
+    flex-basis: 120px; /* Fixed width for date */
+    width: 120px;
+}
+
+.request-card-row .request-actions {
+    flex-shrink: 0;
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    /* Ensure consistent width for action buttons */
+    min-width: 100px; /* Adjust based on max number of buttons */
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+/* Styles for the remove button (square, outside) */
+.remove-card-btn {
+    background-color: #dc3545; /* Red color for close button */
+    color: white;
+    border-radius: 0 8px 0 8px; /* Top-right corner rounded */
+    width: 25px; /* Slightly smaller for better clickability */
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem; /* Smaller icon */
+    cursor: pointer;
+    position: absolute; /* Position relative to .request-card-wrapper */
+    top: 0;
+    right: 0;
+    z-index: 10; /* Ensure it's above card content */
+    transition: background-color 0.2s ease;
+}
+
+.remove-card-btn:hover {
+    background-color: #c82333;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 1200px) { /* Adjusted breakpoint for better wrapping */
+    .request-card-row .info-group.resource-col,
+    .request-card-row .info-group.barangay-col {
+        flex-basis: calc(50% - 15px); /* Two columns per row */
+    }
+}
+
+@media (max-width: 992px) { /* Adjust breakpoint for better wrapping */
+    .request-card-row .info-group {
+        padding-right: 10px;
+    }
+    /* Removed .info-group.id-col */
+    .request-card-row .info-group.quantity-col,
+    .request-card-row .info-group.status-col,
+    .request-card-row .info-group.date-col {
+        width: auto; /* Allow these to shrink/grow on smaller screens */
+        flex-basis: auto;
+    }
+    .request-card-row .info-group.resource-col,
+    .request-card-row .info-group.barangay-col {
+        flex-basis: calc(50% - 10px); /* Two columns per row */
+        min-width: unset;
+    }
+    .request-card-row .request-actions {
+        width: 100%;
+        justify-content: flex-end; /* Align actions to the right */
+        margin-top: 10px;
+        min-width: unset; /* Allow actions to shrink */
+    }
+    .request-card-wrapper {
+        flex-direction: column; /* Stack card and button vertically */
+        align-items: flex-start; /* Align items to start when stacked */
+    }
+    .remove-card-btn {
+        /* Position adjusted by flexbox in .request-card-wrapper for mobile */
+        top: 0;
+        right: 0;
+        margin: 0; /* Remove any external margins */
+    }
+}
+
+@media (max-width: 768px) {
+    .search-filter-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-filter-row .search-input-group,
+    .search-filter-row .form-select {
+        max-width: 100%;
+        width: 100%;
+    }
+    .request-card-row {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to start when stacked */
+    }
+    .request-card-row .row-content {
+        flex-direction: column; /* Stack content vertically */
+        width: 100%;
+    }
+    .request-card-row .info-group {
+        width: 100%; /* Full width for info groups */
+        padding-right: 0;
+        margin-bottom: 10px;
+    }
+    .request-card-row .request-actions {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    .resource-thumbnail {
+        margin-bottom: 15px; /* Add space below thumbnail when stacked */
+        margin-right: 0; /* Remove right margin when stacked */
+    }
+    .remove-card-btn {
+        /* Position adjusted by flexbox in .request-card-wrapper for mobile */
+        top: 0;
+        right: 0;
+        margin: 0; /* Remove any external margins */
+    }
+}
+
+/* No Requests */
+.no-requests {
+    padding: 40px;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Custom Alert Modal Styles (from incoming.php) */
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1060; /* Higher than Bootstrap modals (1050) */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.custom-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.custom-modal {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.custom-modal-overlay.show .custom-modal {
+    transform: translateY(0);
+}
+
+.custom-modal .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.custom-modal .modal-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: white; /* Default icon color */
+}
+
+.custom-modal .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.custom-modal .modal-message {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.custom-modal .modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.custom-modal .modal-actions button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Modal Type Styles (from incoming.php) */
+.custom-modal.success .modal-icon {
+    background-color: var(--modal-success-bg);
+}
+.custom-modal.success .modal-title {
+    color: var(--modal-success-bg);
+}
+.custom-modal.success .btn-primary-action {
+    background-color: var(--modal-success-bg);
+    color: var(--modal-success-text);
+    border: 1px solid var(--modal-success-bg);
+}
+.custom-modal.success .btn-primary-action:hover {
+    background-color: #218838;
+    border-color: #218838;
+}
+
+.custom-modal.error .modal-icon {
+    background-color: var(--modal-error-bg);
+}
+.custom-modal.error .modal-title {
+    color: var(--modal-error-bg);
+}
+.custom-modal.error .btn-primary-action {
+    background-color: var(--modal-error-bg);
+    color: var(--modal-error-text);
+    border: 1px solid var(--modal-error-bg);
+}
+.custom-modal.error .btn-primary-action:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+.custom-modal.warning .modal-icon {
+    background-color: var(--modal-warning-bg);
+    color: var(--modal-warning-text);
+}
+.custom-modal.warning .modal-title {
+    color: var(--modal-warning-bg);
+}
+.custom-modal.warning .btn-primary-action {
+    background-color: var(--modal-warning-bg);
+    color: var(--modal-warning-text);
+    border: 1px solid var(--modal-warning-bg);
+}
+.custom-modal.warning .btn-primary-action:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+}
+
+.custom-modal.info .modal-icon {
+    background-color: var(--modal-info-bg);
+    color: var(--modal-info-text);
+}
+.custom-modal.info .modal-title {
+    color: var(--modal-info-bg);
+}
+.custom-modal.info .btn-primary-action {
+    background-color: var(--modal-info-bg);
+    color: var(--modal-info-text);
+    border: 1px solid var(--modal-info-bg);
+}
+.custom-modal.info .btn-primary-action:hover {
+    background-color: #31d2f2;
+    border-color: #31d2f2;
+}
+
+.custom-modal.borrowed .modal-icon {
+    background-color: var(--modal-borrowed-bg);
+    color: var(--modal-borrowed-text);
+}
+.custom-modal.borrowed .modal-title {
+    color: var(--modal-borrowed-bg);
+}
+.custom-modal.borrowed .btn-primary-action {
+    background-color: var(--modal-borrowed-bg);
+    color: var(--modal-borrowed-text);
+    border: 1px solid var(--modal-borrowed-bg);
+}
+.custom-modal.borrowed .btn-primary-action:hover {
+    background-color: #e06e04;
+    border-color: #e06e04;
+}
+
+.custom-modal.cancelled .modal-icon {
+    background-color: var(--modal-cancelled-bg);
+    color: var(--modal-cancelled-text);
+}
+.custom-modal.cancelled .modal-title {
+    color: var(--modal-cancelled-bg);
+}
+.custom-modal.cancelled .btn-primary-action {
+    background-color: var(--modal-cancelled-bg);
+    color: var(--modal-cancelled-text);
+    border: 1px solid var(--modal-cancelled-bg);
+}
+.custom-modal.cancelled .btn-primary-action:hover {
+    background-color: #5a6268;
+    border-color: #5a6268;
+}
+
+.custom-modal .btn-secondary-action {
+    background-color: #f0f0f0;
+    color: #555;
+    border: 1px solid #ccc;
+}
+.custom-modal .btn-secondary-action:hover {
+    background-color: #e0e0e0;
+}
+
+/* Removed resource-photo-container styles as photo is removed from modal */
+
+/* New styles for resource thumbnail in request-card-row */
+.resource-thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-right: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.resource-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* MODIFIED: Modal Layout for Request Details (similar to issued_resources.php) */
+.modal-body .resource-details,
+.modal-body .request-details {
+    padding: 10px 0;
+}
+
+.modal-body .resource-details h6,
+.modal-body .request-details h6 {
+    font-weight: bold;
+    color: var(--violet);
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.modal-body .detail-item {
+    margin-bottom: 10px;
+}
+
+.modal-body .detail-item strong {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.modal-body .detail-item span {
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.modal-body .resource-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-body .resource-image-container img {
+    max-width: 180px;
+    max-height: 180px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+/* Custom style for the Cancel Request button to match cancelled badge */
+.btn-outline-cancelled {
+    color: var(--modal-cancelled-bg);
+    border-color: var(--modal-cancelled-bg);
+}
+.btn-outline-cancelled:hover {
+    background-color: var(--modal-cancelled-bg);
+    color: var(--modal-cancelled-text);
+    border-color: var(--modal-cancelled-bg);
+}
+
+/* Footer styling (copied from dashboard.php) */
+.footer {
+    padding: 15px; /* Reduced padding */
+    text-align: center;
+    color: var(--footer-text-color);
+    font-size: 0.85rem; /* Slightly smaller font */
+    margin-top: auto; /* Push footer to the bottom */
+    background-color: var(--footer-bg);
+    border-top: 1px solid var(--footer-border-color);
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
