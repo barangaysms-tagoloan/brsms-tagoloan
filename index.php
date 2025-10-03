@@ -909,7 +909,7 @@
             <a class="navbar-brand" href="#">
                 <img src="uploads/BRSMS.jpg" alt="BRSMS Logo">
                 <div class="brand-text">
-                    BRSMS <span class="version">v1.0</span>
+                    BRSMS <span class="version">v1.1</span>
                     <div class="env-label">TEST SERVER</div>
                 </div>
             </a>
