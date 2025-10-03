@@ -48,7 +48,7 @@
                 .env-label {
                     font-size: 0.7rem;
                     font-weight: bold;
-                    color: #d9534f; /* red to highlight TEST SERVER */
+                    color: #14033dff; /* red to highlight TEST SERVER */
                     text-transform: uppercase;
                 }
 
