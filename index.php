@@ -18,25 +18,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        .navbar-brand {
+.navbar-brand   {
                     display: flex;
                     align-items: center;
                     font-weight: bold;
                     color: #6a11cb;
                     font-size: 1.25rem;
-                        }
+                    text-decoration: none;
+                }
 
-                        .navbar-brand img {
-                            height: 40px; /* adjust size as needed */
-                            margin-right: 8px;
-                        }
+                .navbar-brand img {
+                    height: 40px; /* adjust as needed */
+                    margin-right: 8px;
+                }
 
-                        .navbar-brand .version {
-                            font-size: 0.75rem;   /* smaller font */
-                            font-weight: normal;
-                            margin-left: 4px;     /* space after "BRSMS" */
-                            color: #666;          /* subtle grey (or change to #6a11cb for purple) */
-                        }
+                .brand-text {
+                    display: flex;
+                    flex-direction: column;
+                    line-height: 1.2;
+                }
+
+                .navbar-brand .version {
+                    font-size: 0.75rem;
+                    font-weight: normal;
+                    margin-left: 4px;
+                    color: #666;
+                }
+
+                .env-label {
+                    font-size: 0.7rem;
+                    font-weight: bold;
+                    color: #d9534f; /* red to highlight TEST SERVER */
+                    text-transform: uppercase;
+                }
+
         :root {
             /* Purple Gauge Theme Colors */
             --primary-purple: #673ab7; /* Deep Purple */
@@ -892,9 +907,13 @@
         <div class="navbar-container">
             <!-- Moved navbar-brand to the beginning to align left -->
             <a class="navbar-brand" href="#">
-            <img src="uploads/BRSMS.jpg" alt="BRSMS Logo">
-            BRSMS <span class="version">v1.0</span>
+                <img src="uploads/BRSMS.jpg" alt="BRSMS Logo">
+                <div class="brand-text">
+                    BRSMS <span class="version">v1.0</span>
+                    <div class="env-label">TEST SERVER</div>
+                </div>
             </a>
+
             <!-- The hamburger button and nav-menu will naturally align to the right
                  due to 'space-between' on the navbar-container -->
             <button class="hamburger" id="hamburger-menu" aria-label="Toggle navigation">
