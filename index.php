@@ -901,7 +901,7 @@
             <a class="navbar-brand" href="#">   
                 <img src="uploads/BRSMS.jpg" alt="BRSMS Logo">
                 <div class="brand-text">
-                    BRSMS <span class="version">v5.2</span>
+                    BRSMS <span class="version">v1.1.2</span>
                     <div class="env-label">CURRENTLY FIXING</div>
                 </div>
             </a>
