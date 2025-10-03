@@ -159,7 +159,7 @@
                     items.sort((a, b) => a.item_id - b.item_id);
 
                     $.each(items, function(index, item) {
-                        const qrCodePath = item.qr_code ? '/logic/inventory/qrcodes/' + item.qr_code : 'qrcodes/default_qr.png';
+                        const qrCodePath = item.qr_code ? '../logic/inventory/qrcodes/' + item.qr_code : 'qrcodes/default_qr.png';
 
                         const row = $('<tr>').append(
                             $('<td>').append($('<input>').attr({

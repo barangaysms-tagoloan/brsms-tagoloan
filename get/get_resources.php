@@ -62,7 +62,7 @@ if ($resources->num_rows > 0):
                 </thead>
                 <tbody>
         <?php while ($item = $resources->fetch_assoc()):
-            $photo_src = !empty($item['res_photo']) ? '/logic/inventory/uploads/'.htmlspecialchars($item['res_photo']) : 'images/default-item.jpg';
+            $photo_src = !empty($item['res_photo']) ? '../logic/inventory/uploads/'.htmlspecialchars($item['res_photo']) : 'images/default-item.jpg';
 
             
             $displayed_quantity = $item['res_quantity']; 
@@ -109,7 +109,7 @@ if ($resources->num_rows > 0):
     } else {
         
         while ($item = $resources->fetch_assoc()):
-            $photo_src = !empty($item['res_photo']) ? '/logic/inventory/uploads/'.htmlspecialchars($item['res_photo']) : 'images/default-item.jpg';
+            $photo_src = !empty($item['res_photo']) ? '../logic/inventory/uploads/'.htmlspecialchars($item['res_photo']) : 'images/default-item.jpg';
 
             
             $displayed_quantity = $item['res_quantity']; 

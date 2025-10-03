@@ -336,7 +336,7 @@ function handleResourceEdit($conn, $current_user_id)
             $qrs_to_delete = [];
             while ($row = $qr_to_delete_result->fetch_assoc()) {
                 if (!empty($row["qr_code"])) {
-                    $qrs_to_delete[] = "qrcodes/" . $row["qr_code"];
+                    $qrs_to_delete[] = "/qrcodes/" . $row["qr_code"];
                 }
             }
             $get_qr_stmt->close();
@@ -367,7 +367,7 @@ function handleResourceEdit($conn, $current_user_id)
                 $qrs_to_delete = [];
                 while ($row = $qr_to_delete_result->fetch_assoc()) {
                     if (!empty($row["qr_code"])) {
-                        $qrs_to_delete[] = "logic/qrcodes/" . $row["qr_code"];
+                        $qrs_to_delete[] = "/qrcodes/" . $row["qr_code"];
                     }
                 }
                 $get_qr_stmt->close();
@@ -463,7 +463,7 @@ function handleResourceDeletion($conn, $current_user_id)
         $qrs_to_delete = [];
         while ($row = $qr_to_delete_result->fetch_assoc()) {
             if (!empty($row["qr_code"])) {
-                $qrs_to_delete[] = "logic/qrcodes/" . $row["qr_code"];
+                $qrs_to_delete[] = "/qrcodes/" . $row["qr_code"];
             }
         }
         $get_qr_stmt->close();

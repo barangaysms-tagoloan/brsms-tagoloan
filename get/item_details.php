@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../logic/database/db.php'; // Ensure this path is correct for your new domain structure
+require '../logic/database/db.php';
 
 // --- IMPORTANT: Set the default timezone for PHP ---
 // Replace 'Asia/Manila' with your actual timezone if different.
@@ -14,7 +14,6 @@ if ($item_id === 0) {
     die("Invalid item ID provided.");
 }
 
-// --- Fetch Item Details ---
 $query = "SELECT ri.item_id, ri.item_status, ri.qr_code, ri.serial_number, ri.current_req_id,
                  r.res_id, r.res_name, r.res_description, r.res_photo, r.is_bulk,
                  b.brgy_name

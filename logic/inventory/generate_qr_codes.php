@@ -55,7 +55,7 @@ while ($item = $items_result->fetch_assoc()) {
     
     // Generate filename
     $filename = "qr_item_{$item_id}.png";
-    $filepath = "qrcodes/" . $filename;
+    $filepath = "/qrcodes/" . $filename;
     
     // Generate QR code
     QRcode::png($qrContent, $filepath, QR_ECLEVEL_L, 10, 2);
